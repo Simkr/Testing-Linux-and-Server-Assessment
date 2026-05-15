@@ -79,3 +79,67 @@ total 0
 
 <img width="900" height="836" alt="image" src="https://github.com/user-attachments/assets/86389486-3de7-4bb3-8722-57d472c78f7f" />
 
+Question 2:
+-------------
+## Create the Script Using 'vim'
+
+Open the script file:
+vim /home/ec2-user/webapp/scripts/log_user.sh
+
+#!/bin/bash
+
+read -p "Enter your name: " username
+
+cat /home/ec2-user/webapp/config/app.conf
+
+echo "Login: $username Date: $(date)" >> /home/ec2-user/webapp/logs/app.log
+
+
+# Display full log contents
+cat /home/ec2-user/webapp/logs/app.log
+
+## Give Execute Permission
+
+chmod +x /home/ec2-user/webapp/scripts/log_user.sh
+
+
+## Run the Script Multiple Times
+
+### First Run
+
+/home/ec2-user/webapp/scripts/log_user.sh
+
+Chirag
+
+
+### Second Run
+
+/home/ec2-user/webapp/scripts/log_user.sh
+
+Priya
+
+
+### Third Run
+
+/home/ec2-user/webapp/scripts/log_user.sh
+
+Ravi
+
+
+## Verify the Log File
+
+Run:
+
+cat /home/ec2-user/webapp/logs/app.log
+
+
+Expected output format:
+
+Login: Chirag Date: Fri May 15 10:45:11 UTC 2026
+
+Login: Priya Date: Fri May 15 10:46:02 UTC 2026
+
+Login: Ravi Date: Fri May 15 10:46:40 UTC 2026
+
+
+<img width="675" height="438" alt="image" src="https://github.com/user-attachments/assets/c04c10bf-6f51-4f0c-b6a3-330919bddd9f" />
