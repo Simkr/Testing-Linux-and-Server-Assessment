@@ -168,6 +168,7 @@ sudo useradd -m devuser4
 ### 3. Add write-access users to writers group
 
 sudo usermod -aG writers devuser1
+
 sudo usermod -aG writers devuser2
 
 
