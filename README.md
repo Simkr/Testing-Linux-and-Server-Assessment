@@ -1,4 +1,5 @@
-Question1
+Question1: Set Up Your DevOps Project Structure
+-----------
 
 # 1) Create the full directory structure with ONE mkdir -p command
 mkdir -p /home/ec2-user/webapp/{scripts,logs,config}
@@ -79,7 +80,7 @@ total 0
 
 <img width="900" height="836" alt="image" src="https://github.com/user-attachments/assets/86389486-3de7-4bb3-8722-57d472c78f7f" />
 
-Question 2:
+Question 2: Write an Interactive Log Script
 -------------
 ## Create the Script Using 'vim'
 
@@ -143,3 +144,88 @@ Login: Ravi Date: Fri May 15 10:46:40 UTC 2026
 
 
 <img width="675" height="438" alt="image" src="https://github.com/user-attachments/assets/c04c10bf-6f51-4f0c-b6a3-330919bddd9f" />
+
+Question 3: User Management and File Permission Control
+-------------
+## Steps
+
+### 1. Create the writers group
+
+sudo groupadd writers
+
+
+### 2. Create 4 users with home directories
+
+sudo useradd -m devuser1
+
+sudo useradd -m devuser2
+
+sudo useradd -m devuser3
+
+sudo useradd -m devuser4
+
+
+### 3. Add write-access users to writers group
+
+sudo usermod -aG writers devuser1
+sudo usermod -aG writers devuser2
+
+
+### 4. Change group ownership of the script
+
+sudo chown root:writers /home/ec2-user/webapp/scripts/log_user.sh
+
+
+### 5. Set permissions to 664
+
+sudo chmod 664 /home/ec2-user/webapp/scripts/log_user.sh
+
+
+## Verification
+
+### Check permissions
+
+ls -l /home/ec2-user/webapp/scripts/log_user.sh
+
+
+### Check group membership
+
+groups devuser1
+
+groups devuser2
+
+groups devuser3
+
+groups devuser4
+
+
+---
+
+## Testing Access
+
+### Write-access users (devuser1, devuser2)
+
+sudo -u devuser1 
+
+echo "# test edit" >> /home/ec2-user/webapp/scripts/log_user.sh
+
+sudo -u devuser2 
+
+echo "# another edit" >> /home/ec2-user/webapp/scripts/log_user.sh
+
+
+
+### Read-only users (devuser3, devuser4)
+
+sudo -u devuser3 
+
+cat /home/ec2-user/webapp/scripts/log_user.sh
+
+sudo -u devuser4 
+
+cat /home/ec2-user/webapp/scripts/log_user.sh
+
+<img width="940" height="475" alt="image" src="https://github.com/user-attachments/assets/d9ee776b-3a6e-4c78-bd2c-910cd75bebe0" />
+<img width="940" height="443" alt="image" src="https://github.com/user-attachments/assets/d93f9a75-9e30-4864-a648-29cb0356df3f" />
+
+
